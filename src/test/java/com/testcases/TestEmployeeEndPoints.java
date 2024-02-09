@@ -55,36 +55,40 @@ public class TestEmployeeEndPoints {
 
 	}
 
+	@Test(priority = 6, dataProvider = "GetData", dataProviderClass = EmployeeData.class)
+	public void verifyCreateEmployeeDD(String id, String name, String salary, String married, String address,
+			String company,String course1,String course2) {
+		EmployeeData data = new EmployeeData();
+
+		String[] courses = { course1, course2 };
+		data.setId(id);
+		data.setName(name);
+		data.setMarried(married);
+		data.setCompany(company);
+		data.setSalary(salary);
+		data.setCourses(courses);
+		data.setAddress(address);
+
+		Response response = EmployeeEndPoints.createEmployee(data);
+
+		Assert.assertEquals(response.getStatusCode(), 201);
+
+	}
+
 	@Test(priority = 5)
 	public void verifyDeleteEmployee() {
-		
+
 		Response response = EmployeeEndPoints.deleteEmployee("0d6a");
 		Assert.assertEquals(response.getStatusCode(), 200);
 	}
-	
-	/*
-	 * {
-        "id": "a7ee"
-    },
-    {
-        "id": "17d0"
-    },
-    {
-        "id": "984e"
-    },
-    {
-        "id": "0d6a"
-    },
-	 * 
-	 */
 
 	@Test(priority = 4)
 	public void verifyUpdateEmployee() {
-		
+
 		EmployeeData data = new EmployeeData();
 
 		String[] courses = { "OOps", "Selenium" };
-		
+
 		data.setName("xyzupdated");
 		data.setMarried("marriedupdated");
 		data.setCompany("cnameupdated");

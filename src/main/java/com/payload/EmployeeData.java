@@ -1,5 +1,9 @@
 package com.payload;
 
+import org.testng.annotations.DataProvider;
+
+import com.utilities.ExcelReader;
+
 public class EmployeeData {
 
 	private String id;
@@ -64,6 +68,26 @@ public class EmployeeData {
 
 	public void setCourses(String[] courses) {
 		this.courses = courses;
+	}
+
+	@DataProvider(name = "GetData")
+	public static String[][] getDataFromExcel() {
+
+		ExcelReader reader = new ExcelReader(
+				System.getProperty("user.dir") + "/src/main/java/com/testdata/EmpData.xlsx");
+		int noOfRows = reader.getRowCount("Sheet1");
+		int noOfColumns = reader.getColumnCount("Sheet1", 1);
+
+		String[][] createEmpData = new String[noOfRows][noOfColumns];
+
+		for (int i = 1; i <= noOfRows; i++) {
+			for (int j = 0; j < noOfColumns; j++) {
+				createEmpData[i - 1][j] = reader.getCellData("Sheet1", i, j);
+			}
+		}
+
+		return createEmpData;
+
 	}
 
 }
