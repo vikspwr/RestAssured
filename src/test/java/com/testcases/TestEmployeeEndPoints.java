@@ -13,7 +13,7 @@ public class TestEmployeeEndPoints {
 
 	public static Logger logger = LogManager.getLogger(TestEmployeeEndPoints.class);;
 
-	@Test
+	@Test(priority = 1)
 	public void verifyFetchAllEmployee() {
 		
 		Response response = EmployeeEndPoints.fetchAllEmployee();
@@ -21,6 +21,13 @@ public class TestEmployeeEndPoints {
 		
 	}
 	
+	@Test(priority = 2)
+	public void verifyFetchSingleEmployee() {
+		
+		Response response = EmployeeEndPoints.fetchSingleEmployee("1");
+		response.then().log().body();
+		
+	}
 	
 	
 

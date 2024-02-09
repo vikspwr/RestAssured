@@ -22,5 +22,17 @@ public class EmployeeEndPoints {
 		return response;
 	}
 	
+	public static Response fetchSingleEmployee(String id) {
+		
+		Response response = given()
+					.contentType(ContentType.JSON)
+					.pathParam("empId", id)
+		.when()
+			.get(Routes.fetchSingleEmployee);
+		
+		return response;
+		
+	}
+	
 
 }
