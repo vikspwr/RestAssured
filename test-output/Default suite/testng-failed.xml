@@ -5,7 +5,7 @@
     <classes>
       <class name="com.testcases.TestEmployeeEndPoints">
         <methods>
-          <include name="verifyFetchSingleEmployee"/>
+          <include name="verifyDeleteEmployee"/>
         </methods>
       </class> <!-- com.testcases.TestEmployeeEndPoints -->
     </classes>
